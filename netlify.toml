@@ -4,6 +4,14 @@
   functions = "lambda"
 
 [[headers]]
-for = "/static/*"
-[headers.values]
-Cache-Control = "public, max-age=360000"
+  for = "/*"
+
+  [headers.values]
+    X-Frame-Options = "DENY"
+    X-XSS-Protection = "1; mode=block"
+    Content-Security-Policy = "frame-ancestors 'none'"
+
+[[headers]]
+  for = "/static/*"
+  [headers.values]
+    Cache-Control = "public, max-age=360000"
